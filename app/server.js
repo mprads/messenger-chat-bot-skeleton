@@ -5,11 +5,13 @@ import bodyParser from 'body-parser';
 
 import Logger from './middlewares/Logger';
 import Bot from '../bot/Bot';
+import Config from './config/index';
 
 dotenv.config({ path: `${__dirname}/../.env` });
 
-const port = process.env.PORT || 8080;
 const env = process.env.NODE_ENV || 'development';
+const port = process.env.PORT || 8080;
+const config = Config[env];
 
 const app = express();
 const logger = Logger();
@@ -19,8 +21,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const chatBot = new Bot({
-  pageAccessToken: process.env.MESSENGER_PAGE_ACCESS_TOKEN,
-  appSecret: process.env.MESSENGER_APP_SECRET,
+  pageAccessToken: config.fb.pageAccessToken,
+  appSecret: config.fb.appSecret,
   serverUrl: process.env.SERVER_URL,
 });
 

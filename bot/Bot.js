@@ -1,5 +1,6 @@
 import request from 'request';
 import PersistentMenu from '../app/services/PersistentMenu';
+import Text from '../app/services/text.json';
 
 export default class Bot {
   constructor(config) {
@@ -15,7 +16,7 @@ export default class Bot {
     };
     this.update(obj, 'Set Get Started');
   }
-
+  // Only visible on mobile platforms
   setGreeting(payload) {
     const obj = {
       setting_type: 'greeting',
@@ -96,9 +97,8 @@ export default class Bot {
     // Update Bot Greeting
     this.setGreeting([{
       locale: 'default',
-      text: 'Hello and welcome to your chatbot skeleton',
+      text: Text.greeting,
     }]);
-
     // Configure Bot Get Started Button
     this.setGetStarted('{ "intent": "GET_STARTED" }');
   }
