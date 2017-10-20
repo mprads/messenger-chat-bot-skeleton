@@ -5,7 +5,7 @@ You will need to download a tunneling service if you want to access the bot from
 
 First open the directory in terminal and run 'npm i'
 
-First, log into facebook make sure you have at least one page created(this wll be the name and image of your bot).
+Next, log into facebook make sure you have at least one page created(this wll be the name and image of your bot).
 
 Go to https://developers.facebook.com/ and login with a facebook account.
 
