@@ -1,7 +1,18 @@
+// Enter or alter text you want used by the bot here
 {
-  "greeting": "Hello and welcome to your chatbot skeleton",
+  "greeting": "Hello and welcome to your chatbot skeleton.",
   "postback": "Postback",
   "nested": "Nested",
   "webUrl": "Web Url",
-  "shamelessPlug": "Mprads"
+  "shamelessPlug": "Mprads",
+  "home": "Home",
+  "refocusMessage": "Sorry I do not understand.",
+  "homeMenu": "Home Menu",
+  "redirect": "Open a webview",
+  "secondMenu": "You can have multiple templates",
+  "tutorialMessage": "Congratulations, your chatbot is running. You can type 'home' to bring up the home menu. Try sending different types of messages to see how the chatbot reacts. Also check out the persistent menu in the bottom left.",
+  "handleAudio": "You have sent an Audio message. Go into bot/services/Responses to change how the chatbot handles these types of messages.",
+  "handleImage":"You have sent an Image. Go into bot/services/Responses to change how the chatbot handles these types of messages.",
+  "hanldeVideo":"You have sent an Video. Go into bot/services/Responses to change how the chatbot handles these types of messages.",
+  "handlePostback":"You have sent an Postback that is not already handled by this skeleton. Go into app/services/EventToIntent to add the new intent then into bot/services/Responses to change how the chatbot handles these types of messages."
 }

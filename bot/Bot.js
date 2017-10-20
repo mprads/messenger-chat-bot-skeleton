@@ -1,6 +1,5 @@
 import request from 'request';
 import PersistentMenu from './services/PersistentMenu';
-import ElementBuilder from './services/ElementBuilder';
 import Text from '../app/services/text.json';
 import * as Responses from './services/Responses';
 
@@ -10,28 +9,70 @@ export default class Bot {
     this.persistentMenuData = new PersistentMenu();
   }
 
-  showHomeMenu(event) {
-    Responses.showHomeMenu(this.config, event);
+  async showHomeMenu(event) {
+    const message = await Responses.showHomeMenu(event);
+    this.callSendAPI(message);
   }
 
-  tutorialMessage(event) {
-    Responses.tutorialMessage(this.config, event);
+  async tutorialMessage(event) {
+    const message = await Responses.tutorialMessage();
+    this.createTextMessage(event, message);
   }
 
-  refocusMessage(event) {
-    Responses.refocusMessage(this.config, event);
+  async refocusMessage(event) {
+    const message = await Responses.refocusMessage(event);
+    this.callSendAPI(message);
   }
 
-  handleAudio(event) {
-    Responses.handleAudio(this.config, event);
+  async handleAudio(event) {
+    const message = await Responses.handleAudio();
+    this.createTextMessage(event, message);
   }
 
-  handleImage(event) {
-    Responses.handleImage(this.config, event);
+  async handleImage(event) {
+    const message = await Responses.handleImage();
+    this.createTextMessage(event, message);
   }
 
-  handleVideo(event) {
-    Responses.handleVideo(this.config, event);
+  async handleVideo(event) {
+    const message = await Responses.handleVideo();
+    this.createTextMessage(event, message);
+  }
+
+  async handlePostback(event) {
+    const message = await Responses.handlePostback();
+    this.createTextMessage(event, message);
+  }
+
+  createTextMessage(event, messageText) {
+    const messageData = {
+      recipient: {
+        id: event.sender.id,
+      },
+      message: {
+        text: messageText,
+        metadata: 'DEVELOPER_DEFINED_METADATA',
+      },
+    };
+    this.callSendAPI(messageData);
+  }
+
+  callSendAPI(messageData) {
+    request({
+      uri: 'https://graph.facebook.com/v2.6/me/messages',
+      qs: { access_token: this.config.pageAccessToken },
+      method: 'POST',
+      json: messageData,
+    }, (error, response, body) => {
+      if (!error && response.statusCode === 200) {
+        const recipientId = body.recipient_id;
+        console.log('Message sent to ', recipientId);
+      } else {
+        console.error('Unable to send message.');
+        console.error(response);
+        console.error(error);
+      }
+    });
   }
 
   setGetStarted(payload) {
@@ -74,24 +115,6 @@ export default class Bot {
       whitelisted_domains: [url],
     };
     this.update(obj, 'Whitelist URL');
-  }
-
-  callSendAPI(messageData) {
-    request({
-      uri: 'https://graph.facebook.com/v2.6/me/messages',
-      qs: { access_token: this.config.pageAccessToken },
-      method: 'POST',
-      json: messageData,
-    }, (error, response, body) => {
-      if (!error && response.statusCode === 200) {
-        const recipientId = body.recipient_id;
-        console.log('Message sent to ', recipientId);
-      } else {
-        console.error('Unable to send message.');
-        console.error(response);
-        console.error(error);
-      }
-    });
   }
 
   update(payload, functionName) {

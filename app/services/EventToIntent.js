@@ -42,6 +42,9 @@ export default class EventToIntent {
       case 'HOME':
         this.bot.showHomeMenu(event);
         break;
+      case 'POSTBACK':
+        this.bot.handlePostback(event);
+        break;
       default:
         this.bot.refocusMessage(event);
         break;
