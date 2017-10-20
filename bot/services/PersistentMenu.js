@@ -6,7 +6,7 @@ export default function () {
   const Postback = () => ({
     title: Text.postback,
     type: 'postback',
-    payload: '{ "intent": "PostbackExample", "data": {} }',
+    payload: '{ "intent": "POSTBACK", "data": {} }',
   });
 
   const Nested = () => ({
