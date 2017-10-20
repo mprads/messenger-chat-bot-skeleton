@@ -8,10 +8,10 @@ const config = Config[env];
 // Webhook validation give by facebook
 export function validate(req, res) {
   if (req.query['hub.mode'] === 'subscribe' &&
-    req.query['hub.verify_token'] === config.fb.validationToken) {
+    req.query['hub.verify_token'] === config.fb.verifyToken) {
     res.status(200).send(req.query['hub.challenge']);
   } else {
-    console.error('Failed validation. Make sure the validation tokens match.');
+    console.error('Failed validation. Make sure the verify tokens match.');
     res.sendStatus(403);
   }
 }
