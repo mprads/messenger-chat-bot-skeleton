@@ -1,11 +1,37 @@
 import request from 'request';
-import PersistentMenu from '../app/services/PersistentMenu';
+import PersistentMenu from './services/PersistentMenu';
+import ElementBuilder from './services/ElementBuilder';
 import Text from '../app/services/text.json';
+import * as Responses from './services/Responses';
 
 export default class Bot {
   constructor(config) {
     this.config = config;
     this.persistentMenuData = new PersistentMenu();
+  }
+
+  showHomeMenu(event) {
+    Responses.showHomeMenu(this.config, event);
+  }
+
+  tutorialMessage(event) {
+    Responses.tutorialMessage(this.config, event);
+  }
+
+  refocusMessage(event) {
+    Responses.refocusMessage(this.config, event);
+  }
+
+  handleAudio(event) {
+    Responses.handleAudio(this.config, event);
+  }
+
+  handleImage(event) {
+    Responses.handleImage(this.config, event);
+  }
+
+  handleVideo(event) {
+    Responses.handleVideo(this.config, event);
   }
 
   setGetStarted(payload) {

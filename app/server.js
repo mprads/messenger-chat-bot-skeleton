@@ -6,6 +6,7 @@ import bodyParser from 'body-parser';
 import Logger from './middlewares/Logger';
 import Bot from '../bot/Bot';
 import Config from './config/index';
+import routes from './routes/index';
 
 dotenv.config({ path: `${__dirname}/../.env` });
 
@@ -27,6 +28,7 @@ const chatBot = new Bot({
 });
 
 chatBot.init();
+app.use('/bot', routes(app));
 
 app.listen(port, () => {
   logger.appStarted(env, port, 'localhost');

@@ -1,6 +1,6 @@
 // This is where you can create your own buttons on the persistent menu
 // Below is an example of each type possible through facebook
-import Text from './text.json';
+import Text from '../../app/services/text.json';
 
 export default function () {
   const Postback = () => ({
