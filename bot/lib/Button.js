@@ -3,11 +3,11 @@ export default class Button {
     this.type = type;
   }
 
-  static get Types() {
+  static get types() {
     return {
-      POSTBACK: 'postBack',
-      WEBURL: 'web_url',
-      ELEMENTSHARE: 'element_share',
+      postback: 'postBack',
+      webUrl: 'web_url',
+      elementShare: 'element_share',
     };
   }
 

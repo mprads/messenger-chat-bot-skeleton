@@ -1,5 +1,6 @@
 // This is where you can create your own buttons on the persistent menu
 // Below is an example of each type possible through facebook
+// Go to https://developers.facebook.com/docs/messenger-platform/send-messages/persistent-menu to see more examples
 import Text from '../../app/services/text.json';
 
 export default function () {
@@ -27,7 +28,7 @@ export default function () {
     webview_height_ratio: 'full',
   });
 
-  const createMenu = () => {
+  function createMenu() {
     const menu = {
       locale: 'default',
       composer_input_disabled: false,
@@ -38,12 +39,10 @@ export default function () {
       ],
     };
     return menu;
-  };
+  }
 
-  // Persistent menu need to be an array
-  this.run = () => {
-    const persistentMenu = [];
-    persistentMenu.push(createMenu());
-    return persistentMenu;
-  };
+  // Persistent menu needs to be an array
+  const persistentMenu = [];
+  persistentMenu.push(createMenu());
+  return persistentMenu;
 }
