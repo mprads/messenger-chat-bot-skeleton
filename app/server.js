@@ -27,6 +27,7 @@ const chatBot = new Bot({
   serverUrl: process.env.SERVER_URL,
 });
 
+// This is the method call that sends update requests to facebook everytime the server restarts
 chatBot.init();
 app.use('/bot', routes(app));
 

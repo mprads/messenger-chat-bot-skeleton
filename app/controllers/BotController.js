@@ -5,7 +5,7 @@ import Config from '../config/index';
 const env = process.env.NODE_ENV || 'development';
 const config = Config[env];
 
-// Webhook validation give by facebook
+// Webhook validation given by facebook
 export function validate(req, res) {
   if (req.query['hub.mode'] === 'subscribe' &&
     req.query['hub.verify_token'] === config.fb.verifyToken) {
@@ -15,7 +15,7 @@ export function validate(req, res) {
     res.sendStatus(403);
   }
 }
-
+// Function given by facebook to receive messages
 export function handleMessage(req, res) {
   const data = req.body;
   // Make sure this is a page subscription

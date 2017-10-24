@@ -1,6 +1,9 @@
 import * as MessageBuilder from './MessageBuilder';
 import Text from '../../app/services/text.json';
 
+// You can add responses here, they should all return a form of a message object if it is being passed
+// to callSendApi or just a string if they are being passed to createTextMessage
+
 export function showHomeMenu(event) {
   return MessageBuilder.homeMenu(event);
 }

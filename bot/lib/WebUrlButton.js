@@ -2,7 +2,7 @@ import Button from './Button';
 
 export default class WebUrlButton extends Button {
   constructor(title, url, webviewHeightRatio, messengerExtensions, fallbackUrl) {
-    super(Button.Types.WEBURL);
+    super(Button.types.webUrl);
     this.title = title;
     this.url = url;
     this.webview_height_ratio = webviewHeightRatio;
@@ -15,11 +15,11 @@ export default class WebUrlButton extends Button {
     }
   }
 
-  static get WebViewHeightRatio() {
+  static get webViewHeightRatio() {
     return {
-      COMPACT: 'compact',
-      TALL: 'tall',
-      FULL: 'full',
+      compact: 'compact',
+      tall: 'tall',
+      full: 'full',
     };
   }
 }
